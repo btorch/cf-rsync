@@ -1,0 +1,22 @@
+--- a/rsync.1	2009-05-08 19:42:39.000000000 +0200
++++ b/rsync.1	2009-06-17 14:46:24.459735130 +0200
+@@ -442,8 +442,8 @@
+      \-\-remove\-source\-files   sender removes synchronized files (non-dir)
+      \-\-del                   an alias for \-\-delete\-during
+      \-\-delete                delete extraneous files from dest dirs
+-     \-\-delete\-before         receiver deletes before transfer (default)
+-     \-\-delete\-during         receiver deletes during xfer, not before
++     \-\-delete\-before         receiver deletes before transfer
++     \-\-delete\-during         receiver deletes during xfer, not before (default)
+      \-\-delete\-delay          find deletions during, delete after
+      \-\-delete\-after          receiver deletes after transfer, not before
+      \-\-delete\-excluded       also delete excluded files from dest dirs
+@@ -2809,7 +2809,7 @@
+ .RS 
+ \f(CWmerge /etc/rsync/default.rules\fP
+ .br 
+-\f(CW. /etc/rsync/default.rules\fP
++\f(CW\&. /etc/rsync/default.rules\fP
+ .br 
+ \f(CWdir\-merge .per\-dir\-filter\fP
+ .br 

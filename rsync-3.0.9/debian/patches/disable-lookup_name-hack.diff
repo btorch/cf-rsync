@@ -1,0 +1,14 @@
+--- rsync-3.0.7/clientname.c.orig	2009-01-17 21:41:35.000000000 +0000
++++ rsync-3.0.7/clientname.c	2010-03-23 16:06:22.000000000 +0000
+@@ -213,6 +213,11 @@
+ 		char *name_buf, size_t name_buf_size,
+ 		char *port_buf, size_t port_buf_size)
+ {
++	/* start hack - we don't want name lookups so bypass */
++	strlcpy(name_buf, default_name, name_buf_size);
++	return 1;
++	/* end hack */
++
+ 	int name_err;
+ 
+ 	/* reverse lookup */
