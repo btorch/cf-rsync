@@ -1,4 +1,4 @@
-rsync (3.0.9) lucid; urgency=low
+rsync (3.0.10) lucid precise; urgency=low
 
   * Adding for lucid build.
 
