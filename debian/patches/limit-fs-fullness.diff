@@ -1,0 +1,37 @@
+diff --git a/receiver.c b/receiver.c
+index d90fa25..a9009a4 100644
+--- a/receiver.c
++++ b/receiver.c
+@@ -19,6 +19,7 @@
+  * with this program; if not, visit the http://fsf.org website.
+  */
+ 
++#include <sys/statvfs.h>
+ #include "rsync.h"
+ 
+ extern int verbose;
+@@ -710,6 +711,24 @@ int recv_files(int f_in, char *local_name)
+ 					       dflt_perms, exists);
+ 		}
+ 
++		struct statvfs fsbuf;
++		unsigned long reserve = 5L * 1024 * 1024 * 1024;
++		if (statvfs(file->dirname, &fsbuf) == 0)
++		{
++			off_t used = (fsbuf.f_blocks - fsbuf.f_bfree) * fsbuf.f_frsize;
++			off_t limit = fsbuf.f_blocks * fsbuf.f_frsize - reserve;
++			if ((used + F_LENGTH(file)) > limit)
++			{
++				rprintf(FERROR, "Filesystem too full for new files!");
++				discard_receive_data(f_in, F_LENGTH(file));
++				if (fd1 != -1)
++					close(fd1);
++				if (inc_recurse)
++					send_msg_int(MSG_NO_SEND, ndx);
++				continue;
++			}
++		}
++
+ 		/* We now check to see if we are writing the file "inplace" */
+ 		if (inplace)  {
+ 			fd2 = do_open(fname, O_WRONLY|O_CREAT, 0600);
