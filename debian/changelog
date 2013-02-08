@@ -1,10 +1,16 @@
-rsync (3.0.9-2rax) unstable; urgency=low
+rsync (3.0.9-2rax1) lucid; urgency=low
+
+  * Patch to limit destination drive fullness
+
+ -- Gregory Holt <gholt@rackspace.com>  Tue, 29 Jan 2013 19:41:00 +0000
+
+rsync (3.0.9-1ubuntu2) lucid; urgency=low
 
   * Adding for lucid build.
 
  -- Marcelo Martins <btorch@gmail.com>  Wed, 31 Oct 2012 20:28:00 +0000
 
-rsync (3.0.9-1ubuntu1) unstable; urgency=low
+rsync (3.0.9-1ubuntu1) precise; urgency=low
 
   * Mark rsync Multi-Arch: foreign.
 

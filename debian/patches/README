@@ -25,3 +25,6 @@ progress-cursor-pos.diff
 
 disable-lookup_name-hack.diff
     - Provided by Shuler for name lookups
+
+limit-fs-fullness.diff
+    - Provided by Michael Barton to reserve 5G on destination
